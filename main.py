@@ -4,9 +4,14 @@ pygame.init()
 WIDTH = 1150
 HEIGHT = 500
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
-screen.fill("brown")
+key = pygame.key.get_pressed()
 clock = pygame.time.Clock()
-key_pressed = False
+
+player_surf = pygame.Surface((10, 10))
+player_surf.fill("blue")
+player_rect = player_surf.get_rect(topleft = (0, 0))
+
+
 
 c1_sound = pygame.mixer.Sound("Pypiano notes\C3.wav")
 c1 = pygame.Surface((50, 100))
@@ -167,7 +172,6 @@ am2 = pygame.Surface((30, 70))
 am2.fill("black")
 am2_r = am2.get_rect(topleft = (700,360))
 
-
 cm3_sound = pygame.mixer.Sound("Pypiano notes\C5#.wav")
 cm3 = pygame.Surface((30, 70))
 cm3.fill("black")
@@ -194,14 +198,101 @@ am3.fill("black")
 am3_r = am3.get_rect(topleft = (1085,360))
 
 
+
 while True:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
             exit()
 
-        if event.type == pygame.MOUSEBUTTONDOWN:
+        if pygame.mouse.get_pos():
+            player_rect.center = pygame.mouse.get_pos()
 
+        if event.type == pygame.KEYDOWN and event.key == pygame.K_q:
+            c1_sound.play(0)
+        if event.type == pygame.KEYDOWN and event.key == pygame.K_w:
+            d1_sound.play(0)
+        if event.type == pygame.KEYDOWN and event.key == pygame.K_e:
+            e1_sound.play(0)
+        if event.type == pygame.KEYDOWN and event.key == pygame.K_r:
+            f1_sound.play(0)
+        if event.type == pygame.KEYDOWN and event.key == pygame.K_t:
+            g1_sound.play(0)
+        if event.type == pygame.KEYDOWN and event.key == pygame.K_y:
+            a1_sound.play(0)
+        if event.type == pygame.KEYDOWN and event.key == pygame.K_u:
+            b1_sound.play(0)
+        if event.type == pygame.KEYDOWN and event.key == pygame.K_i:
+            c2_sound.play(0)
+        if event.type == pygame.KEYDOWN and event.key == pygame.K_o:
+            d2_sound.play(0)
+        if event.type == pygame.KEYDOWN and event.key == pygame.K_p:
+            e2_sound.play(0)
+        if event.type == pygame.KEYDOWN and event.key == pygame.K_LEFTBRACKET:
+            f2_sound.play(0)
+        if event.type == pygame.KEYDOWN and event.key == pygame.K_RIGHTBRACKET:
+            g2_sound.play(0)
+        if event.type == pygame.KEYDOWN and event.key == pygame.K_z:
+            a2_sound.play(0)
+        if event.type == pygame.KEYDOWN and event.key == pygame.K_x:
+            b2_sound.play(0)
+        if event.type == pygame.KEYDOWN and event.key == pygame.K_c:
+            c3_sound.play(0)
+        if event.type == pygame.KEYDOWN and event.key == pygame.K_v:
+            d3_sound.play(0)
+        if event.type == pygame.KEYDOWN and event.key == pygame.K_b:
+            e3_sound.play(0)
+        if event.type == pygame.KEYDOWN and event.key == pygame.K_n:
+            f3_sound.play(0)
+        if event.type == pygame.KEYDOWN and event.key == pygame.K_m:
+            g3_sound.play(0)
+        if event.type == pygame.KEYDOWN and event.key == pygame.K_COMMA:
+            a3_sound.play(0)
+        if event.type == pygame.KEYDOWN and event.key == pygame.K_PERIOD:
+            b3_sound.play(0)
+######################################################
+
+        if event.type == pygame.KEYDOWN and event.key == pygame.K_2:
+            cm1_sound.play(0)
+        if event.type == pygame.KEYDOWN and event.key == pygame.K_3:
+            dm1_sound.play(0)
+        if event.type == pygame.KEYDOWN and event.key == pygame.K_5:
+            fm1_sound.play(0)
+        if event.type == pygame.KEYDOWN and event.key == pygame.K_6:
+            gm1_sound.play(0)
+        if event.type == pygame.KEYDOWN and event.key == pygame.K_7:
+            am1_sound.play(0)
+
+
+        if event.type == pygame.KEYDOWN and event.key == pygame.K_9:
+            cm2_sound.play(0)
+        if event.type == pygame.KEYDOWN and event.key == pygame.K_0:
+            dm2_sound.play(0)
+        if event.type == pygame.KEYDOWN and event.key == pygame.K_EQUALS:
+            fm2_sound.play(0)
+        if event.type == pygame.KEYDOWN and event.key == pygame.K_a:
+            gm2_sound.play(0)
+        if event.type == pygame.KEYDOWN and event.key == pygame.K_s:
+            am2_sound.play(0)
+
+
+        if event.type == pygame.KEYDOWN and event.key == pygame.K_f:
+            cm3_sound.play(0)
+        if event.type == pygame.KEYDOWN and event.key == pygame.K_g:
+            dm3_sound.play(0)
+        if event.type == pygame.KEYDOWN and event.key == pygame.K_j:
+            fm3_sound.play(0)
+        if event.type == pygame.KEYDOWN and event.key == pygame.K_k:
+            gm3_sound.play(0)
+        if event.type == pygame.KEYDOWN and event.key == pygame.K_l:
+            am3_sound.play(0)
+
+        if event.type == pygame.KEYDOWN and event.key == pygame.K_UP:
+            pygame.mixer.quit()
+        # elif event.type == pygame.KEYDOWN and event.key == pygame.K_DOWN:
+        #     pygame.mixer.unpause()
+
+        if event.type == pygame.MOUSEBUTTONDOWN:
             if c1_r.collidepoint(event.pos):c1_sound.play(0)
             if d1_r.collidepoint(event.pos): d1_sound.play(0)
             if e1_r.collidepoint(event.pos): e1_sound.play(0)
@@ -244,6 +335,8 @@ while True:
             if gm3_r.collidepoint(event.pos): gm3_sound.play(0)
             if am3_r.collidepoint(event.pos): am3_sound.play(0)
 
+    screen.fill("brown")
+
     screen.blit(c1, c1_r)
     screen.blit(d1, d1_r)
     screen.blit(e1, e1_r)
@@ -285,6 +378,8 @@ while True:
     screen.blit(fm3, fm3_r)
     screen.blit(gm3, gm3_r)
     screen.blit(am3, am3_r)
-    
+    screen.blit(player_surf, player_rect)
+
+
     pygame.display.update()
     clock.tick(60)
